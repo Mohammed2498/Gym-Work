@@ -39,12 +39,19 @@
                                              height="60px">
                                     </td>
                                     <td>
-                                        @if ($subscriber->subscriptions->isNotEmpty())
-                                            @foreach ($subscriber->subscriptions as $subscription)
-                                                {{ $subscription->status }} <br>
-                                            @endforeach
+                                        @if ($subscriber->subscription)
+                                            @if ($subscriber->subscription->status == 'active')
+                                                <span class="badge badge-success">Active</span>
+                                            @elseif ($subscriber->subscription->status == 'expired')
+                                                <span class="badge badge-danger">Expired</span>
+                                            @elseif ($subscriber->subscription->status == 'canceled')
+                                                <span class="badge badge-secondary">Canceled</span>
+                                            @else
+                                                <span
+                                                    class="badge badge-primary">{{ $subscriber->subscription->status }}</span>
+                                            @endif
                                         @else
-                                            N/A
+                                            No Subscription
                                         @endif
                                     </td>
                                     <td>
@@ -58,8 +65,10 @@
                                                     class="feather icon-trash-2"></i>
                                             </button>
                                         </form>
-                                        <a href="{{route('admin.subscriptions.create',$subscriber->id)}}"
-                                           class="btn btn-primary">Subscribe</a>
+                                        @if (!$subscriber->subscription || $subscriber->subscription->status=="canceled")
+                                            <a href="{{route('admin.subscriptions.create',$subscriber->id)}}"
+                                               class="btn btn-primary">Subscribe</a>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

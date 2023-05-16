@@ -31,7 +31,10 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(callback: function () {
     Route::resource('/subscribers', SubscriberController::class);
-    Route::resource('/subscriptions', SubscriptionController::class);
+    Route::get('/subscriptions', [SubscriptionController::class,'index'])->name('subscriptions.index');
+    Route::get('/subscriptions/create/{subscriber_id}', [SubscriptionController::class,'create'])->name('subscriptions.create');
+    Route::post('/subscriptions/store', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+
 });
 
 

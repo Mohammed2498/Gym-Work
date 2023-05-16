@@ -20,10 +20,10 @@ class SubscriptionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Subscriber $subscriber)
+    public function create($subscriber_id)
     {
         $subscribers=Subscriber::all();
-        return view('admin.subscriptions.create', compact('subscriber','subscribers'));
+        return view('admin.subscriptions.create', compact('subscriber_id'));
     }
 
     /**
@@ -31,14 +31,27 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
+
+        // Validate the form inputs
         $validatedData = $request->validate([
-            'subscriber_id' => 'required|exists:subscribers,id',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'status' => 'required|in:expired,active,canceled',
+            'status' => 'required|in:active,expired,canceled',
         ]);
-        Subscription::create($validatedData);
-        return redirect()->route('admin.subscriptions.index')->with('success', 'Subscription created successfully');
+
+        // Assign the subscriber ID from the request
+        $subscriberId = $request->input('subscriber_id');
+
+        // Create the subscription using mass assignment and the subscriber ID
+        $subscription = Subscription::create([
+            'subscriber_id' => $subscriberId,
+            'start_date' => $validatedData['start_date'],
+            'end_date' => $validatedData['end_date'],
+            'status' => $validatedData['status'],
+        ]);
+
+        // Redirect back to the subscriber index view
+        return redirect()->route('admin.subscribers.index')->with('success', 'Subscription created successfully');
     }
 
     /**

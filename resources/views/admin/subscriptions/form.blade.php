@@ -1,18 +1,27 @@
-<div class="form-group">
-    <label for="subscriber_id">Subscriber:</label>
-    <select name="subscriber_id" id="subscriber_id" class="form-control">
-        @foreach ($subscribers as $subscriber)
-            <option value="{{ $subscriber->id }}">{{ $subscriber->name }}</option>
-        @endforeach
-    </select>
+
+<input type="hidden" name="subscriber_id" value="{{ $subscriber_id }}">
+@error('subscriber_id')
+<div class="alert alert-danger">
+    {{ $message }}
 </div>
+@enderror
 <div class="form-group">
     <label for="start_date">Start Date:</label>
     <input type="date" name="start_date" id="start_date" class="form-control">
+    @error('start_date')
+    <div class="alert alert-danger">
+        {{ $message }}
+    </div>
+    @enderror
 </div>
 <div class="form-group">
     <label for="end_date">End Date:</label>
     <input type="date" name="end_date" id="end_date" class="form-control">
+    @error('end_date')
+    <div class="alert alert-danger">
+        {{ $message }}
+    </div>
+    @enderror
 </div>
 <div class="form-group">
     <label for="status">Status:</label>
@@ -21,4 +30,9 @@
         <option value="active" selected>Active</option>
         <option value="canceled">Canceled</option>
     </select>
+    @error('status')
+    <div class="alert alert-danger">
+        {{ $message }}
+    </div>
+    @enderror
 </div>

@@ -13,8 +13,8 @@ class Subscriber extends Model
     protected $fillable = ['name', 'image', 'phone'];
 
 
-    public function subscriptions()
+    public function subscription()
     {
-        return $this->hasMany(Subscription::class, 'subscriber_id', 'id');
+        return $this->hasOne(Subscription::class, 'subscriber_id', 'id');
     }
 }

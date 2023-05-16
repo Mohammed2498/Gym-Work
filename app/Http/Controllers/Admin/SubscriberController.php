@@ -15,7 +15,7 @@ class SubscriberController extends Controller
     public function index()
     {
 //        $subscriber=new Subscriber();
-        $subscribers = Subscriber::with('subscriptions')->get();
+        $subscribers = Subscriber::with('subscription')->get();
 //        $subscriptions=$subscriber->subscriptions;
 //        $subscribers = Subscriber::with('subscriptions')->get();
         return view('admin.subscribers.index', ['subscribers' => $subscribers]);

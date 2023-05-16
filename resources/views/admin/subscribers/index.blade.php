@@ -25,6 +25,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Image</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -36,6 +37,15 @@
                                     <td>{{$subscriber->phone}}</td>
                                     <td><img src="{{asset('storage/' . $subscriber->image) }}" width="60px"
                                              height="60px">
+                                    </td>
+                                    <td>
+                                        @if ($subscriber->subscriptions->isNotEmpty())
+                                            @foreach ($subscriber->subscriptions as $subscription)
+                                                {{ $subscription->status }} <br>
+                                            @endforeach
+                                        @else
+                                            N/A
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{route('admin.subscribers.edit',$subscriber->id)}}"

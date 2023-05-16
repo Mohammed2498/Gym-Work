@@ -15,6 +15,6 @@ class Subscriber extends Model
 
     public function subscriptions()
     {
-        return $this->hasMany(Subscription::class, 'subscriber_id', 'id')->withDefault();
+        return $this->hasMany(Subscription::class, 'subscriber_id', 'id');
     }
 }

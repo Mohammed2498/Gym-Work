@@ -35,6 +35,7 @@ class SubscriptionController extends Controller
             'subscriber_id' => 'required|exists:subscribers,id',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
+            'status' => 'required|in:expired,active,canceled',
         ]);
         Subscription::create($validatedData);
         return redirect()->route('admin.subscriptions.index')->with('success', 'Subscription created successfully');
@@ -45,7 +46,7 @@ class SubscriptionController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -53,7 +54,7 @@ class SubscriptionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+
     }
 
     /**

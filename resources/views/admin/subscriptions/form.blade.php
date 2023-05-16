@@ -14,3 +14,11 @@
     <label for="end_date">End Date:</label>
     <input type="date" name="end_date" id="end_date" class="form-control">
 </div>
+<div class="form-group">
+    <label for="status">Status:</label>
+    <select name="status" id="status" class="form-control">
+        <option value="expired">Expired</option>
+        <option value="active" selected>Active</option>
+        <option value="canceled">Canceled</option>
+    </select>
+</div>

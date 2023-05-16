@@ -89,6 +89,9 @@ class SubscriberController extends Controller
      */
     public function destroy(Subscriber $subscriber)
     {
+        if ($subscriber->image) {
+            Storage::disk('public')->delete($subscriber->image);
+        }
         $subscriber->delete();
         return redirect()->route('admin.subscribers.index')->with('success', 'Subscriber has been deleted');
     }

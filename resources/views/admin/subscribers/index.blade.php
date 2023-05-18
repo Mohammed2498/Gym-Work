@@ -25,6 +25,8 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Image</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -38,6 +40,9 @@
                                     <td><img src="{{asset('storage/' . $subscriber->image) }}" width="60px"
                                              height="60px">
                                     </td>
+
+                                    <td>{{$subscriber->subscription->start_date ?? ''}} </td>
+                                    <td>{{$subscriber->subscription->end_date ?? ''}}</td>
                                     <td>
                                         @if ($subscriber->subscription)
                                             @if ($subscriber->subscription->status == 'active')

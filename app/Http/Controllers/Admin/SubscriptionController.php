@@ -24,10 +24,10 @@ class SubscriptionController extends Controller
      */
     public function create($subscriber_id)
     {
+        $duration = 1; // Default duration of 1 month
         $subscriber = Subscriber::findOrFail($subscriber_id);
         $start_date = Carbon::now()->toDateString();
-        $end_date = Carbon::now()->addMonth()->toDateString();
-        $duration = 1; // Default duration of 1 month
+        $end_date = Carbon::now()->addMonths($duration)->toDateString();
         return view('admin.subscriptions.create', compact('subscriber_id','subscriber', 'start_date', 'end_date','duration'));
     }
 
@@ -41,7 +41,7 @@ class SubscriptionController extends Controller
             'subscriber_id' => 'required',
             'start_date' => 'required|date',
             'duration' => 'required|integer|min:1',
-            'status' => 'required'
+            'status' => 'required|in:active,expired',
         ]);
 
             $startDate = Carbon::parse($validatedData['start_date']);

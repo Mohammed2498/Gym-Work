@@ -128,12 +128,12 @@
                              aria-labelledby="v-pills-crm-tab">
                             <ul class="vertical-menu">
                                 <li><h5 class="menu-title">CRM</h5></li>
-                                <li><a href="index.html"><img
+                                <li><a href="{{route('admin.home.index')}}"><img
                                             src="{{asset('assets/dashboard/images/svg-icon/dashboard.svg')}}"
-                                            class="img-fluid" alt="dashboard">Dashboard</a></li>
-                                <li><a href="crm-projects.html"><img
+                                            class="img-fluid" alt="dashboard">Home</a></li>
+                                <li><a href="{{route('admin.subscribers.index')}}"><img
                                             src="{{asset('assets/dashboard/images/svg-icon/reports.svg')}}"
-                                            class="img-fluid" alt="projects">Projects</a></li>
+                                            class="img-fluid" alt="projects">Subscribers</a></li>
                                 <li><a href="crm-lead-status.html"><img
                                             src="{{asset('assets/dashboard/images/svg-icon/charts.svg')}}"
                                             class="img-fluid" alt="leads">Lead Status</a></li>
@@ -568,12 +568,12 @@
                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                                 src="{{asset('assets/dashboard/images/users/profile.svg')}}"
                                                 class="img-fluid" alt="profile"><span
-                                                class="live-icon">John Doe</span><span
+                                                class="live-icon">{{\Illuminate\Support\Facades\Auth::user()->name}}</span><span
                                                 class="feather icon-chevron-down live-icon"></span></a>
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                             <div class="dropdown-item">
                                                 <div class="profilename">
-                                                    <h5>John Doe</h5>
+                                                    <h5>{{\Illuminate\Support\Facades\Auth::user()->name}}</h5>
                                                 </div>
                                             </div>
                                             <div class="userbox">
@@ -589,9 +589,13 @@
                                                                 class="img-fluid" alt="email">Email</a>
                                                     </li>
                                                     <li class="media dropdown-item">
-                                                        <a href="#" class="profile-icon"><img
-                                                                src="{{asset('assets/dashboard/images/svg-icon/logout.svg')}}"
-                                                                class="img-fluid" alt="logout">Logout</a>
+                                                        <form action="{{ route('logout') }}" method="POST">
+                                                            @csrf
+                                                            <button class="profile-icon" type="submit"><img
+                                                                    src="{{asset('assets/dashboard/images/svg-icon/logout.svg')}}"
+                                                                    class="img-fluid" alt="logout">Logout
+                                                            </button>
+                                                        </form>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -1,47 +1,94 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('login') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Soyuz is a bootstrap 4x + laravel admin dashboard template">
+    <meta name="keywords"
+          content="admin, admin dashboard, admin panel, admin template, analytics, bootstrap 4, laravel, clean, crm, ecommerce, hospital, responsive, rtl, sass support, ui kits">
+    <meta name="author" content="Themesbox17">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <title>Soyuz - Bootstrap 4x + Laravel Admin Dashboard Template</title>
+    <!-- Fevicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- Start css -->
+    <link href="{{asset('assets/dashboard/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/dashboard/css/icons.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('assets/dashboard/css/style.css')}}" rel="stylesheet" type="text/css">
+    <!-- End css -->
+</head>
+<body class="vertical-layout">
+<!-- Start Containerbar -->
+<div id="containerbar" class="containerbar authenticate-bg">
+    <!-- Start Container -->
+    <div class="container">
+        <div class="auth-box login-box">
+            <!-- Start row -->
+            <div class="row no-gutters align-items-center justify-content-center">
+                <!-- Start col -->
+                <div class="col-md-6 col-lg-5">
+                    <!-- Start Auth Box -->
+                    <div class="auth-box-right">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="form-head">
+                                        <a href="index.html" class="logo"><img src="assets/images/logo.svg"
+                                                                               class="img-fluid" alt="logo"></a>
+                                    </div>
+                                    <h4 class="text-primary my-4">Log in !</h4>
+                                    <div class="form-group">
+                                        <input name="email" type="email" class="form-control" id="email"
+                                               placeholder="Enter Email here" autofocus autocomplete="username"
+                                               required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="password" type="password" class="form-control" id="password"
+                                               placeholder="Enter Password here" required
+                                               autocomplete="current-password">
+                                    </div>
+                                    <div class="form-row mb-3">
+                                        <div class="col-sm-6">
+                                            <div class="custom-control custom-checkbox text-left">
+                                                <input name="remember" type="checkbox" class="custom-control-input"
+                                                       id="remember_me">
+                                                <label class="custom-control-label font-14" for="remember_me">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="forgot-psw">
+                                                <a id="forgot-psw" href="user-forgotpsw.html" class="font-14">Forgot
+                                                    Password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-lg btn-block font-18">Log in
+                                    </button>
+                                </form>
+                                <p class="mb-0 mt-3">Don't have a account? <a href="{{route('register')}}">Sign up</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Auth Box -->
+                </div>
+                <!-- End col -->
+            </div>
+            <!-- End row -->
         </div>
-
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
-
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800" name="remember">
-                <span class="ml-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
-            </label>
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+    </div>
+    <!-- End Container -->
+</div>
+<!-- End Containerbar -->
+<!-- Start js -->
+<script src="{{asset('assets/dashboard/js/jquery.min.js')}}"></script>
+<script src="{{asset('assets/dashboard/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/dashboard/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/dashboard/js/modernizr.min.js')}}"></script>
+<script src="{{asset('assets/dashboard/js/detect.js')}}"></script>
+<script src="{{asset('assets/dashboard/js/jquery.slimscroll.js')}}"></script>
+<!-- End js -->
+</body>
+</html>

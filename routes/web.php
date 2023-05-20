@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\SubscriberController;
 use App\Http\Controllers\Admin\SubscriptionController;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,10 +33,12 @@ Route::middleware('auth')->group(function () {
 });
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(callback: function () {
     Route::resource('/subscribers', SubscriberController::class);
-    Route::get('/subscriptions', [SubscriptionController::class,'index'])->name('subscriptions.index');
-    Route::get('/subscriptions/create/{subscriber_id}', [SubscriptionController::class,'create'])->name('subscriptions.create');
+    Route::delete('/subscriptions/{subscription}', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
+    Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
+    Route::get('/subscriptions/create/{subscriber_id}', [SubscriptionController::class, 'create'])->name('subscriptions.create');
     Route::post('/subscriptions/store', [SubscriptionController::class, 'store'])->name('subscriptions.store');
-
+    Route::get('/subscriptions/{subscription}/edit', 'SubscriptionController@edit')->name('subscriptions.edit');
+    Route::get('/', [HomeController::class, 'index'])->name('home.index');
 });
 
 

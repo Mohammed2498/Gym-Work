@@ -42,8 +42,7 @@
     @enderror
 </div>
 <div class="form-group">
-    <label for="status">Status:</label>
-    <select name="status" id="status" class="form-control">
+    <select hidden="" name="status" id="status" class="form-control">
         <option value="expired">Expired</option>
         <option value="active" selected>Active</option>
         <option value="canceled">Canceled</option>

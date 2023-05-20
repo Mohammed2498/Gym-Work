@@ -80,8 +80,12 @@ class SubscriptionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        // Delete the subscription
+        $subscription=Subscription::findOrFail($id);
+        $subscription->delete();
+        // Redirect back to the subscribers index or any other appropriate page
+        return redirect()->route('admin.subscribers.index')->with('success', 'Subscription deleted successfully');
     }
 }

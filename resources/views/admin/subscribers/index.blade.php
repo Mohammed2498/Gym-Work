@@ -71,7 +71,7 @@
                                                         class="badge badge-primary">{{ $subscriber->subscription->status }}</span>
                                                 @endif
                                             @else
-                                                <span class="badge badge-secondary">InActive</span>
+                                                <span class="badge badge-secondary">Not Subscribed</span>
                                             @endif
                                         </td>
                                         <td>
@@ -90,11 +90,30 @@
                                                 @if ($subscriber->subscription->status == 'active')
                                                     <!-- Hide the "Subscribe" button -->
                                                 @elseif ($subscriber->subscription->status == 'expired')
-                                                    <a href="" class="btn btn-primary-rgba"><i class="feather icon-send mr-2"></i>Renew</a>
+                                                    <a href="" class="btn btn-primary-rgba"><i
+                                                            class="feather icon-send mr-2"></i>Renew</a>
                                                 @endif
                                             @else
                                                 <a href="{{ route('admin.subscriptions.create', $subscriber->id) }}"
-                                                    class="btn btn-primary">Subscribe</a>
+                                                    class="btn btn-success-rgba"><i
+                                                        class="feather icon-plus mr-2"></i>Subscribe</a>
+                                            @endif
+                                            <!-- Add the dropdown button -->
+                                            @if($subscriber->subscription)
+                                            <div class="dropdown">
+                                                <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                    Actions
+                                                </button>
+                                                <div class="dropdown-menu">
+{{--                                                   <a class="dropdown-item" href="{{ route('subscriptions.edit', $subscriber->subscription->id) }}">Edit Subscription</a>--}}
+                                                    <form action="{{ route('admin.subscriptions.destroy', $subscriber->subscription->id) ??'' }}" method="POST" onsubmit="return confirm('Are you sure?');"
+                                                    >
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="dropdown-item">Delete Subscription</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                             @endif
                                         </td>
                                     </tr>

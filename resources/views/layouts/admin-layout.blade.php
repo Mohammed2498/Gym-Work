@@ -14,6 +14,8 @@
     <!-- Start css -->
     <!-- Apex css -->
     <link href="{{asset('assets/dashboard/')}}assets/plugins/apexcharts/apexcharts.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     <!-- jvectormap css -->
     <link href="{{asset('assets/dashboard/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet">
     <!-- Slick css -->

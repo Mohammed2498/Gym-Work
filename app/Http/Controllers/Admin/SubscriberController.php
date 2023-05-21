@@ -29,7 +29,6 @@ class SubscriberController extends Controller
         $subscriber = new Subscriber();
         return view('admin.subscribers.create', compact('subscriber'));
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -45,10 +44,8 @@ class SubscriberController extends Controller
             $image_url = $image->store('subscribers', 'public');
             $data['image'] = $image_url;
         }
-        else
-        {
-            $image = 'user.png';
-        }
+
+
 
         $subscriber = Subscriber::create($data);
         return redirect()->route('admin.subscribers.index')->with('success', 'Subscriber has been added');

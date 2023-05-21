@@ -15,7 +15,11 @@
     <!-- Apex css -->
     <link href="{{asset('assets/dashboard/')}}assets/plugins/apexcharts/apexcharts.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <!-- DataTables css -->
+    <link href="{{asset('')}}assets/dashboard/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{asset('')}}assets/dashboard/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive Datatable css -->
+    <link href="{{asset('')}}assets/dashboard/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
     <!-- jvectormap css -->
     <link href="{{asset('assets/dashboard/plugins/jvectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet">
     <!-- Slick css -->
@@ -673,6 +677,20 @@
     <script src="{{asset('assets/dashboard/js/custom/custom-dashboard.js')}}"></script>
     <!-- Core js -->
     <script src="{{asset('assets/dashboard/js/core.js')}}"></script>
+    <!-- Datatable js -->
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/dataTables.buttons.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/jszip.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/pdfmake.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/vfs_fonts.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/buttons.html5.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/buttons.print.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/buttons.colVis.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/dataTables.responsive.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/plugins/datatables/responsive.bootstrap4.min.js"></script>
+    <script src="{{asset('')}}assets/dashboard/js/custom/custom-table-datatable.js"></script>
     <!-- End js -->
 </body>
 </html>

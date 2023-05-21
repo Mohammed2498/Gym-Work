@@ -17,13 +17,5 @@ class Subscriber extends Model
     {
         return $this->hasOne(Subscription::class, 'subscriber_id', 'id');
     }
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($subscriber) {
-            if (!$subscriber->image) {
-                $subscriber->image = asset('assets/images/user.png');
-            }
-        });
-    }
+
 }

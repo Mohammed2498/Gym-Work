@@ -29,6 +29,7 @@ class SubscriberController extends Controller
         $subscriber = new Subscriber();
         return view('admin.subscribers.create', compact('subscriber'));
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -43,8 +44,9 @@ class SubscriberController extends Controller
         if ($request->hasFile('image')) {
             $image_url = $image->store('subscribers', 'public');
             $data['image'] = $image_url;
+        } else {
+            $data['image'] = 'subscribers/users-image.jpg';
         }
-
 
 
         $subscriber = Subscriber::create($data);
@@ -91,8 +93,11 @@ class SubscriberController extends Controller
      */
     public function destroy(Subscriber $subscriber)
     {
+
         if ($subscriber->image) {
-            Storage::disk('public')->delete($subscriber->image);
+            if ($subscriber->image !== "subscribers/users-image.jpg") {
+                Storage::disk('public')->delete($subscriber->image);
+            }
         }
         $subscriber->delete();
         return redirect()->route('admin.subscribers.index')->with('success', 'Subscriber has been deleted');

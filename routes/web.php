@@ -37,6 +37,8 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(callback: fu
     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
     Route::get('/subscriptions/create/{subscriber_id}', [SubscriptionController::class, 'create'])->name('subscriptions.create');
     Route::post('/subscriptions/store', [SubscriptionController::class, 'store'])->name('subscriptions.store');
+    Route::get('/subscriptions/{subscriber_id}/edit', [SubscriptionController::class, 'edit'])->name('subscriptions.edit');
+    Route::put('/subscriptions/{subscription}', [SubscriptionController::class, 'update'])->name('subscriptions.update');
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
 });
 

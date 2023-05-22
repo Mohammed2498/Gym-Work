@@ -37,19 +37,20 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
 
-        $validatedData = $request->validate([
+        $data = $request->validate([
             'subscriber_id' => 'required',
             'start_date' => 'required|date',
             'duration' => 'required|integer|min:1',
             'status' => 'required|in:active,expired',
         ]);
 
-            $startDate = Carbon::parse($validatedData['start_date']);
-            $duration = $validatedData['duration'];
-            $endDate = $startDate->addMonths($duration)->toDateString();
-            $validatedData['end_date'] = $endDate;
 
-        Subscription::create($validatedData);
+            $startDate = Carbon::parse($data['start_date']);
+            $duration = $data['duration'];
+            $endDate = $startDate->addMonths($duration)->toDateString();
+            $data['end_date'] = $endDate;
+
+        Subscription::create($data);
         return redirect()->route('admin.subscribers.index')->with('success', 'Subscription created successfully');
     }
 
@@ -64,17 +65,38 @@ class SubscriptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($subscriber_id)
     {
-
+        $duration = 1; // Default duration of 1 month
+        $subscriber = Subscriber::findOrFail($subscriber_id);
+        $start_date = Carbon::now()->toDateString();
+        $end_date = Carbon::now()->addMonths($duration)->toDateString();
+        return view('admin.subscriptions.edit', compact('subscriber_id','subscriber', 'start_date', 'end_date','duration'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Subscription $subscription)
     {
-        //
+
+        $data = $request->validate([
+            'subscriber_id' => 'required',
+            'start_date' => 'required|date',
+            'duration' => 'required|integer|min:1',
+            'status' => 'required|in:active,expired',
+        ]);
+
+
+        $startDate = Carbon::parse($data['start_date']);
+        $duration = $data['duration'];
+        $endDate = $startDate->addMonths($duration)->toDateString();
+        $data['end_date'] = $endDate;
+
+        $subscription->update($data);
+
+        // Redirect or return a response
+        return redirect()->route('admin.subscribers.index');
     }
 
     /**

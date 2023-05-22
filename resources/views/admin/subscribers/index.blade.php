@@ -89,7 +89,7 @@
                                             @if ($subscriber->subscription->status == 'active')
                                                 <!-- Hide the "Subscribe" button -->
                                             @elseif ($subscriber->subscription->status == 'expired')
-                                                <a href="" class="btn btn-primary-rgba"><i
+                                                <a href="{{route('admin.subscriptions.edit',$subscriber->id)}}" class="btn btn-primary-rgba"><i
                                                         class="feather icon-send mr-2"></i>Renew</a>
                                             @endif
                                         @else

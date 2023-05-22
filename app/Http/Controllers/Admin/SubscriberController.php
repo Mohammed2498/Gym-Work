@@ -39,6 +39,7 @@ class SubscriberController extends Controller
             'name' => 'required',
             'phone' => 'required',
         ]);
+
         $image = $request->file('image');
         $data = $request->all();
         if ($request->hasFile('image')) {

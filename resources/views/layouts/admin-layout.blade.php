@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <!-- Start css -->
     <!-- Apex css -->
-    <link href="{{asset('assets/dashboard/')}}assets/plugins/apexcharts/apexcharts.css" rel="stylesheet">
+    <link href="{{asset('assets/dashboard/plugins/apexcharts/apexcharts.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <!-- DataTables css -->
     <link href="{{asset('')}}assets/dashboard/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
@@ -39,7 +39,7 @@
 <div id="infobar-settings-sidebar" class="infobar-settings-sidebar">
     <div class="infobar-settings-sidebar-head d-flex w-100 justify-content-between">
         <h4>Settings</h4><a href="javascript:void(0)" id="infobar-settings-close" class="infobar-settings-close"><img
-                src="assets/images/svg-icon/close.svg" class="img-fluid menu-hamburger-close" alt="close"></a>
+                src="{{asset('assets/dashboard/images/svg-icon/close.svg')}}" class="img-fluid menu-hamburger-close" alt="close"></a>
     </div>
     <div class="infobar-settings-sidebar-body">
         <div class="custom-mode-setting">
@@ -137,15 +137,16 @@
                                 <li><a href="{{route('admin.home.index')}}"><img
                                             src="{{asset('assets/dashboard/images/svg-icon/dashboard.svg')}}"
                                             class="img-fluid" alt="dashboard">Home</a></li>
-                                <li><a href="{{route('admin.subscribers.index')}}"><img
+                                <li><a href=""><img
                                             src="{{asset('assets/dashboard/images/svg-icon/reports.svg')}}"
-                                            class="img-fluid" alt="projects">Subscribers</a></li>
-                                <li><a href="crm-lead-status.html"><img
-                                            src="{{asset('assets/dashboard/images/svg-icon/charts.svg')}}"
-                                            class="img-fluid" alt="leads">Lead Status</a></li>
-                                <li><a href="crm-clients.html"><img
-                                            src="{{asset('assets/dashboard/images/svg-icon/customers.svg')}}"
-                                            class="img-fluid" alt="clients">Clients</a></li>
+                                            class="img-fluid" alt="projects">Subscribers</a>
+                                    <ul class="vertical-submenu menu-open" style="display: block;">
+                                        <li><a href="{{route('admin.subscribers.index')}}">All Subscribers</a></li>
+                                        <li><a href="{{route('admin.subscribers.active')}}">Active Subscribers </a></li>
+                                        <li><a href="{{route('admin.subscribers.expired')}}">Expired Subscribers </a></li>
+                                    </ul>
+                                </li>
+
                             </ul>
                         </div>
                         <div class="tab-pane fade" id="v-pills-ecommerce" role="tabpanel"

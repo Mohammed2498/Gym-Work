@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(callback: function () {
+    Route::get('/subscribers/active', [SubscriberController::class, 'activeSubscribers'])->name('subscribers.active');
+    Route::get('/subscribers/expired', [SubscriberController::class, 'expiredSubscribers'])->name('subscribers.expired');
     Route::resource('/subscribers', SubscriberController::class);
     Route::delete('/subscriptions/{subscription}', [SubscriptionController::class, 'destroy'])->name('subscriptions.destroy');
     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscriptions.index');
@@ -40,6 +42,9 @@ Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(callback: fu
     Route::get('/subscriptions/{subscriber_id}/edit', [SubscriptionController::class, 'edit'])->name('subscriptions.edit');
     Route::put('/subscriptions/{subscription}', [SubscriptionController::class, 'update'])->name('subscriptions.update');
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
+
+
 });
 
 

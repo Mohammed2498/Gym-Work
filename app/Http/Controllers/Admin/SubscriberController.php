@@ -12,6 +12,8 @@ class SubscriberController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
     public function index()
     {
 //        $subscriber=new Subscriber();
@@ -19,6 +21,23 @@ class SubscriberController extends Controller
 //        $subscriptions=$subscriber->subscriptions;
 //        $subscribers = Subscriber::with('subscriptions')->get();
         return view('admin.subscribers.index', ['subscribers' => $subscribers]);
+    }
+
+    public function activeSubscribers()
+    {
+
+        $subscribers = Subscriber::with('subscription')->get();
+
+        return view('admin.subscribers.active', ['subscribers' => $subscribers]);
+    }
+
+    public function expiredSubscribers()
+    {
+
+        $subscribers = Subscriber::with('subscription')->get();
+
+
+        return view('admin.subscribers.expired', ['subscribers' => $subscribers]);
     }
 
     /**

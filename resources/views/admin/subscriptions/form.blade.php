@@ -4,21 +4,14 @@
     {{ $message }}
 </div>
 @enderror
-<div>
-    <label>
-        <input type="radio" name="subscription_type" value="duration" checked>
-        Subscription with Duration
-    </label>
+<div class="form-group" >
+<select name="subscription_type" id="subscribe_type" onchange="handleSubscribeTypeChange()" class="form-control">
+    <option value="specified">Specified Duration</option>
+    <option value="custom">Custom Duration</option>
+</select>
 </div>
-<div>
-    <label>
-        <input type="radio" name="subscription_type" value="custom">
-        Custom Subscription Date
-    </label>
-</div>
+<div class="form-group" id="duration_field" >
 
-<div class="form-group" id="durationFields">
-    <label for="duration">Duration (months):</label>
     <select name="duration" id="duration" class="form-control">
         <option value="1">1 month</option>
         <option value="2">2 months</option>
@@ -35,7 +28,9 @@
         <!-- Add more options as needed -->
     </select>
 </div>
-<div class="form-group" id="customFields" style="display: none;">
+
+
+<div id="start_date_field" class="form-group" style="display: none;">
     <label for="start_date">Start Date:</label>
     <input type="date" name="start_date" id="start_date" class="form-control" value="{{ $start_date }}">
     @error('start_date')
@@ -43,16 +38,17 @@
         {{ $message }}
     </div>
     @enderror
-    <div class="form-group">
-        <label for="end_date">End Date:</label>
-        <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $end_date }}">
-        @error('end_date')
-        <div class="alert alert-danger">
-            {{ $message }}
-        </div>
-        @enderror
-    </div>
 </div>
+<div id="end_date_field" class="form-group" style="display: none;">
+    <label for="end_date">End Date:</label>
+    <input type="date" name="end_date" id="end_date" class="form-control" value="{{ $end_date }}">
+    @error('end_date')
+    <div class="alert alert-danger">
+        {{ $message }}
+    </div>
+    @enderror
+</div>
+
 
 <div class="form-group">
     <select hidden="" name="status" id="status" class="form-control">
@@ -66,5 +62,27 @@
     </div>
     @enderror
 </div>
+<script>
+    function handleSubscribeTypeChange() {
+        var selectedSubscribeType = document.getElementById('subscribe_type').value;
+
+        // Get the DOM elements of the fields to show/hide
+        var durationField = document.getElementById('duration_field');
+        var startDateField = document.getElementById('start_date_field');
+        var endDateField = document.getElementById('end_date_field');
+
+        // Show or hide fields based on the selected subscribe type
+        if (selectedSubscribeType === 'custom') {
+            durationField.style.display = 'none';
+            startDateField.style.display = 'block';
+            endDateField.style.display = 'block';
+        } else {
+            durationField.style.display = 'block';
+            startDateField.style.display = 'none';
+            endDateField.style.display = 'none';
+        }
+    }
+</script>
+
 
 

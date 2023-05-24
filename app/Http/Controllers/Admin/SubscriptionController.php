@@ -28,7 +28,7 @@ class SubscriptionController extends Controller
         $subscriber = Subscriber::findOrFail($subscriber_id);
         $start_date = Carbon::now()->toDateString();
         $end_date = Carbon::now()->addMonths($duration)->toDateString();
-        return view('admin.subscriptions.create', compact('subscriber_id','subscriber', 'start_date', 'end_date','duration'));
+        return view('admin.subscriptions.create', compact('subscriber_id', 'subscriber', 'start_date', 'end_date', 'duration'));
     }
 
     /**
@@ -37,20 +37,49 @@ class SubscriptionController extends Controller
     public function store(Request $request)
     {
 
-        $data = $request->validate([
+        $request->validate([
+            'subscription_type' => 'required|in:specified,custom',
             'subscriber_id' => 'required',
-            'start_date' => 'required|date',
-            'duration' => 'required|integer|min:1',
-            'status' => 'required|in:active,expired',
+            'duration' => 'nullable|integer|min:1',
+            'start_date' => 'nullable|date',
+            'end_date' => 'nullable|date',
         ]);
 
+        $subscriptionType = $request->subscription_type;
+        $subscriberId = $request->subscriber_id;
+        $status = 'active';
 
-            $startDate = Carbon::parse($data['start_date']);
-            $duration = $data['duration'];
-            $endDate = $startDate->addMonths($duration)->toDateString();
-            $data['end_date'] = $endDate;
+        if ($subscriptionType === 'specified') {
+            $duration = $request->duration;
+            $startDate = Carbon::now();
+            $endDate = $startDate->copy()->addMonths($duration);
 
-        Subscription::create($data);
+            $subscriptionData = [
+                'subscriber_id' => $subscriberId,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'status' => $status,
+            ];
+        } elseif ($subscriptionType === 'custom') {
+            $startDate = Carbon::createFromFormat('Y-m-d', $request->start_date);
+            $endDate = Carbon::createFromFormat('Y-m-d', $request->end_date);
+
+            $subscriptionData = [
+                'subscriber_id' => $subscriberId,
+                'start_date' => $startDate,
+                'end_date' => $endDate,
+                'status' => $status,
+            ];
+        }
+
+        Subscription::create($subscriptionData);
+
+//        $startDate = Carbon::parse($data['start_date']);
+//        $duration = $data['duration'];
+//        $endDate = $startDate->addMonths($duration)->toDateString();
+//        $data['end_date'] = $endDate;
+
+
         return redirect()->route('admin.subscribers.index')->with('success', 'Subscription created successfully');
     }
 
@@ -71,7 +100,7 @@ class SubscriptionController extends Controller
         $subscriber = Subscriber::findOrFail($subscriber_id);
         $start_date = Carbon::now()->toDateString();
         $end_date = Carbon::now()->addMonths($duration)->toDateString();
-        return view('admin.subscriptions.edit', compact('subscriber_id','subscriber', 'start_date', 'end_date','duration'));
+        return view('admin.subscriptions.edit', compact('subscriber_id', 'subscriber', 'start_date', 'end_date', 'duration'));
     }
 
     /**
@@ -106,7 +135,7 @@ class SubscriptionController extends Controller
     public function destroy($id)
     {
         // Delete the subscription
-        $subscription=Subscription::findOrFail($id);
+        $subscription = Subscription::findOrFail($id);
         $subscription->delete();
         // Redirect back to the subscribers index or any other appropriate page
         return redirect()->route('admin.subscribers.index')->with('success', 'Subscription deleted successfully');

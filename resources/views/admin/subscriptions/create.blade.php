@@ -21,18 +21,4 @@
             </div>
         </div>
     </x-slot:slot>
-        <script>
-            $(document).ready(function () {
-                $('input[name="subscription_type"]').change(function () {
-                    var selectedOption = $(this).val();
-                    if (selectedOption === 'duration') {
-                        $('#durationFields').show();
-                        $('#customFields').hide();
-                    } else if (selectedOption === 'custom') {
-                        $('#durationFields').hide();
-                        $('#customFields').show();
-                    }
-                });
-            });
-        </script>
 </x-admin-layout>

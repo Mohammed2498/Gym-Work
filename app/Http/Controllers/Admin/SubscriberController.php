@@ -56,7 +56,7 @@ class SubscriberController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => ['required','numeric', 'digits_between:10,10','regex:/^(056|059)\d{7}$/']
         ]);
 
         $image = $request->file('image');
@@ -96,7 +96,7 @@ class SubscriberController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => ['required','numeric', 'digits_between:10,10','regex:/^(056|059)\d{7}$/'],
         ]);
         $image = $request->file('image');
         $data = $request->all();

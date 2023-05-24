@@ -16,6 +16,7 @@
                     @method('PUT')
                     @include('admin.subscribers.form')
                     <button type="submit" class="btn btn-primary">Add</button>
+                    <a href="{{route('admin.subscribers.index')}}" class="btn btn-secondary">Back</a>
                 </form>
             </div>
         </div>

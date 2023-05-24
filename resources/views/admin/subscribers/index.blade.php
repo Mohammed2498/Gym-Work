@@ -74,10 +74,9 @@
                                         @endif
                                     </td>
                                     <td class="row">
-                                        <a href="{{ route('admin.subscribers.edit', $subscriber->id) }}"
-                                           class="btn btn-round btn-warning"><i
-                                                class="feather icon-upload"></i></a>
-                                        <form action="{{ route('admin.subscribers.destroy', $subscriber->id) }}"
+
+                                        <a href="{{ route('admin.subscribers.edit', $subscriber->id) }}" type="button" class="btn btn-warning"><i class="feather icon-upload mr-2"></i> Update</a>
+                                        <form onsubmit="return confirm('Are you sure?');" action="{{ route('admin.subscribers.destroy', $subscriber->id) }}"
                                               method="POST" class="d-inline-block">
                                             @csrf
                                             @method('DELETE')

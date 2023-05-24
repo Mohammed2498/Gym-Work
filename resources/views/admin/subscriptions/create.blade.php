@@ -16,6 +16,7 @@
                         @csrf
                         @include('admin.subscriptions.form')
                         <button class="btn btn-primary">Subscribe</button>
+                        <a href="{{route('admin.subscribers.index')}}" class="btn btn-secondary">Back</a>
                     </form>
                 </div>
             </div>

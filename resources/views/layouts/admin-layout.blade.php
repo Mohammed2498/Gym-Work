@@ -657,6 +657,7 @@
     </div>
     <!-- End Containerbar -->
     <!-- Start js -->
+
     <script src="{{asset('assets/dashboard/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/dashboard/js/popper.min.js')}}"></script>
     <script src="{{asset('assets/dashboard/js/bootstrap.min.js')}}"></script>

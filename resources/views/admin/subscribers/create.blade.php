@@ -23,6 +23,6 @@
             </div>
         </div>
     </div>
-    </x-slot:slot>
 
+    </x-slot:slot>
 </x-admin-layout>

@@ -5,7 +5,8 @@
         Add Subscription
     </x-slot:pageName>
     <x-slot:slot>
-        <div class="col-lg-12">
+
+                <div class="col-lg-12">
             <div class="card m-b-30">
                 <div class="card-header">
                     <h5 class="card-title">Add Subscriber</h5>
@@ -14,10 +15,24 @@
                     <form action="{{route('admin.subscriptions.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @include('admin.subscriptions.form')
-                        <button type="submit" class="btn btn-primary">Add Subscription</button>
+                        <button class="btn btn-primary">Subscribe</button>
                     </form>
                 </div>
             </div>
         </div>
     </x-slot:slot>
+        <script>
+            $(document).ready(function () {
+                $('input[name="subscription_type"]').change(function () {
+                    var selectedOption = $(this).val();
+                    if (selectedOption === 'duration') {
+                        $('#durationFields').show();
+                        $('#customFields').hide();
+                    } else if (selectedOption === 'custom') {
+                        $('#durationFields').hide();
+                        $('#customFields').show();
+                    }
+                });
+            });
+        </script>
 </x-admin-layout>

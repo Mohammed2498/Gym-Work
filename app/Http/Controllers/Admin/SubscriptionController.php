@@ -85,6 +85,7 @@ class SubscriptionController extends Controller
             'start_date' => 'required|date',
             'duration' => 'required|integer|min:1',
             'status' => 'required|in:active,expired',
+            'subscription_type' => 'required',
         ]);
 
 

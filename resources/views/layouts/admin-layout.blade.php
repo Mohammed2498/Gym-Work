@@ -126,14 +126,14 @@
 
                 <div class="vertical-menu-detail">
                     <div class="logobar">
-                        <a href="index.html" class="logo logo-large"><img
+                        <a href="" class="logo logo-large"><img
                                 src="{{asset('assets/dashboard/images/logo.svg')}}" class="img-fluid" alt="logo"></a>
                     </div>
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-crm" role="tabpanel"
                              aria-labelledby="v-pills-crm-tab">
                             <ul class="vertical-menu">
-                                <li><h5 class="menu-title">CRM</h5></li>
+                                <li><h5 class="menu-title">RockGym</h5></li>
                                 <li><a href="{{route('admin.home.index')}}"><img
                                             src="{{asset('assets/dashboard/images/svg-icon/dashboard.svg')}}"
                                             class="img-fluid" alt="dashboard">Home</a></li>
